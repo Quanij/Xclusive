@@ -1,0 +1,36 @@
+<!--welcome.html-->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <title>XCLUSIVE!</title>
+   <div class="jumbotron">
+ <h1 class="display-4">Welcome to XCLUSIVE!</h1>
+</div>
+ </head>
+ <body>
+    <h1>{{greeting}}</h1>
+    <img height="100px" width="150px" src="https://mark.trademarkia.com/services/logo.ashx?sid=77648270" alt="a-chewing-alpaca">
+    <h2>Welcome to my {{adjective}} Meme Generator!</h2>
+    <form method="POST">
+      Formality:<br>
+       <select name="meme-type">
+        <option value="casual">Casual</option>
+        <option value="business-casual">Business Casual</option>
+        <option value="fancy">Fancy</option>
+        </select>
+        <br>
+        Time of Day:<br>
+         <select name="meme-type">
+          <option value="casual">Casual</option>
+          <option value="business-casual">Business Casual</option>
+          <option value="fancy">Fancy</option>
+          </select>
+      <input type="submit" value="Go!">
+    </form>
+  </body>
+</html>
