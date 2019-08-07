@@ -22,11 +22,14 @@ class CssiUser(ndb.Model):
 class LoginPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        if user:
-            signout_link_html = '<a href="%s">sign out</a>' % (
-            users.create_logout_url('/'))
-            index = the_jinja_env.get_template('About Us.html')
-            self.response.write(index.render())
+        if not user:
+            signout_link_html = '<a href="%s">sign out</a>' % (users.create_logout_url('/AboutUs'))
+            email_adress = user.nickmame()
+            cssi_user = CssiUser.query().filter(CssiUser().email == email_adress).get()
+            if cssi_user:
+                index = the_jinja_env.get_template('Templates/LoginPage.html')
+                self.response.write(index.render())
+
         else:
             login_url = users.create_login_url('/')
             index = the_jinja_env.get_template('Templates/LoginPage.html')
@@ -73,6 +76,8 @@ class AboutUs(webapp2.RequestHandler):
     def get(self):  # for a get request
         welcome_template = the_jinja_env.get_template('Templates/AboutUs.html')
         self.response.write(welcome_template.render())
+
+
 
 app = webapp2.WSGIApplication([
     ('/', LoginPage),
