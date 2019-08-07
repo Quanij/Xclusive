@@ -61,15 +61,11 @@ class Xperience(webapp2.RequestHandler):
 
     def post(self):
         results_template = the_jinja_env.get_template('Templates/results.html')
-        meme_first_line = self.request.get('user-first-ln')
-        meme_second_line = self.request.get('user-second-ln')
         meme_img_choice = self.request.get('meme-type')
 
         pic_url = get_meme_url(meme_img_choice)
 
-        the_variable_dict = {"line1": meme_first_line,
-                             "line2": meme_second_line,
-                             "img_url": pic_url}
+        the_variable_dict = {"img_url": pic_url}
         self.response.write(results_template.render(the_variable_dict))
 
 class AboutUs(webapp2.RequestHandler):
