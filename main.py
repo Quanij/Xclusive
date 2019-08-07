@@ -22,10 +22,10 @@ class CssiUser(ndb.Model):
 class LoginPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        if not user:
+        if user:
             signout_link_html = '<a href="%s">sign out</a>' % (users.create_logout_url('/'))
-            email_adress = user.nickmame()
-            cssi_user = CssiUser.query().filter(CssiUser().email == email_adress).get()
+            email_adress = user.nickname()
+            cssi_user = CssiUser.query().filter(CssiUser.email == email_adress).get()
             if cssi_user:
                 index = the_jinja_env.get_template('Templates/AboutUs.html')
                 self.response.write(index.render())
@@ -38,13 +38,12 @@ class LoginPage(webapp2.RequestHandler):
                 <input type="text" name="last_name">
                 <input type="submit">
                 </form><br> %s <br>
-                ''' % (email_address, signout_link_html))
+                ''' % (email_adress, signout_link_html))
 
         else:
             login_url = users.create_login_url('/')
             index = the_jinja_env.get_template('Templates/LoginPage.html')
-            templatedata ={"login_url":login_url}
-            self.response.write(index.render(templatedata))
+            self.response.write(index.render())
 
 
     def post(self):
@@ -58,7 +57,7 @@ class LoginPage(webapp2.RequestHandler):
         cssi_user.put()
         # Show confirmation to the user. Include a link back to the index.
         #self.response.write('Thanks for signing up, %s! <br><a href="/Xperience">Home</a>' %cssi_user.first_name)
-        welcome_template = the_jinja_env.get_template('Templates/welcome.html')
+        welcome_template = the_jinja_env.get_template('Templates/AboutUs.html')
         a_variable_dict = {"greeting": "Welcome to the Xcuslive Xperience!"}
         self.response.write(welcome_template.render(a_variable_dict))
 
@@ -71,11 +70,15 @@ class Xperience(webapp2.RequestHandler):
 
     def post(self):
         results_template = the_jinja_env.get_template('Templates/results.html')
+        meme_first_line = self.request.get('user-first-ln')
+        meme_second_line = self.request.get('user-second-ln')
         meme_img_choice = self.request.get('meme-type')
 
         pic_url = get_meme_url(meme_img_choice)
 
-        the_variable_dict = {"img_url": pic_url}
+        the_variable_dict = {"line1": meme_first_line,
+                             "line2": meme_second_line,
+                             "img_url": pic_url}
         self.response.write(results_template.render(the_variable_dict))
 
 class AboutUs(webapp2.RequestHandler):
