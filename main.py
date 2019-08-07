@@ -42,8 +42,9 @@ class LoginPage(webapp2.RequestHandler):
 
         else:
             login_url = users.create_login_url('/')
+            template_login={"login_url":login_url}
             index = the_jinja_env.get_template('Templates/LoginPage.html')
-            self.response.write(index.render())
+            self.response.write(index.render(template_login))
 
 
     def post(self):
