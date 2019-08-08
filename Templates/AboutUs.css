@@ -73,3 +73,12 @@
 .Party {
   height: 500px;
 }
+
+.footer {
+  color: black;
+  height: 100px;
+}
+
+.foundlist {
+  text-align: center;
+}
