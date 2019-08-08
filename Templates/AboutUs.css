@@ -1,5 +1,6 @@
 .body {
       background-color: gainsboro;
+      text-align: center;
     }
 ​
 #jumbo {
@@ -42,12 +43,12 @@
   height: 200px;
   width: 50%;
 }
-​
+
 .Supreme {
   height: 200px;
   width: 70%;
 }
-​
+
 .Adidas{
   height: 200px;
   width: 50%;
