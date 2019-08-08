@@ -12,6 +12,7 @@ from google.appengine.api import users
 from google.appengine.ext import ndb
 
 def get_outfit(formal, time, season):
+    url="nothing"
     if formal == "casual" and time == "night" and season == "summer":
         url = 'https://i.pinimg.com/originals/d9/8d/f1/d98df1f8d91d351136400bb03444a3c2.jpg'
     elif formal == "casual" and time == "night" and season == "spring":
@@ -123,11 +124,9 @@ class Xperience(webapp2.RequestHandler):
 
     def post(self):
         results_template = the_jinja_env.get_template('Templates/results.html')
-        meme_first_line = self.request.get('user-first-ln')
-        meme_second_line = self.request.get('user-second-ln')
-        meme_img_choice = self.request.get('meme-type')
+        meme_img_choice = self.request.get('formality', 'time', 'season' )
 
-        pic_url = get_meme_url(meme_img_choice)
+        pic_url = get_outfit(meme_img_choice)
 
         the_variable_dict = {"line1": meme_first_line,
                              "line2": meme_second_line,
@@ -146,9 +145,27 @@ class Recent(webapp2.RequestHandler):
         self.response.write(Recent.render())
 
 class Results(webapp2.RequestHandler):
-    def get(self):
+    def post(self):
         results = the_jinja_env.get_template('results.html')
         self.response.write(results.render())
+
+class WelcomePage(webapp2.RequestHandler):
+    def get(self):
+        welcome_template = the_jinja_env.get_template('Templates/welcome.html')
+        a_variable_dict = {"greeting": "Welcome to the Xcuslive Xperience!"}
+        self.response.write(welcome_template.render(a_variable_dict))
+
+    def post(self):
+        results_template = the_jinja_env.get_template('Templates/results.html')
+        Formality = self.request.get('formality')
+        Time = self.request.get('time')
+        Season = self.request.get('season')
+        print " "+Formality+" "+Time+" "+Season
+        # meme_img_choice = self.request.get('meme-type')
+        url=get_outfit(Formality, Time, Season)
+        pic_url = {"pic_url":url}
+
+        self.response.write(results_template.render(pic_url))
 
 
 app = webapp2.WSGIApplication([
@@ -157,5 +174,6 @@ app = webapp2.WSGIApplication([
     ('/AboutUs', AboutUs),
     ('/Recent', Recent),
     ('/Results', Results),
+    ('/Welcome', WelcomePage),
 
 ], debug=True)
