@@ -1,58 +1,61 @@
 <!--welcome.html-->
 <!DOCTYPE html>
 <html lang="en">
- <head>
 
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-   <a class="navbar-brand" href="#">Navbar</a>
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-   <span class="navbar-toggler-icon"></span>
-   </button>
-   <div class="collapse navbar-collapse" id="navbarNav">
-   <ul class="navbar-nav">
-     <li class="nav-item">
-       <a class="nav-link" href="AboutUs.html">Home</a>
-     </li>
-     <li class="nav-item">
-       <a class="nav-link" href="Recent.html">Recent Outfits</a>
-     </li>
-     <li class="nav-item">
-       <a class="nav-link" href="#">Blog</a>
-     </li>
-   </ul>
-   </div>
-   </nav>
+<head>
 
-   <!-- Required meta tags -->
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   <title>XCLUSIVE!</title>
-   <div class="jumbotron">
- <h1 class="display-4">Welcome to XCLUSIVE!</h1>
-</div>
- </head>
- <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">X</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="AboutUs.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Recent.html">Recent Outfits</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-    <h1>{{greeting}}</h1>
-    <img height="100px" width="150px" src="https://mark.trademarkia.com/services/logo.ashx?sid=77648270" alt="a-chewing-alpaca">
-    <h2>Welcome to my {{adjective}} Meme Generator!</h2>
-    <form method="POST">
-      Formality:<br>
-       <select name="meme-type">
-        <option value="casual">Casual</option>
-        <option value="business-casual">Business Casual</option>
-        <option value="fancy">Fancy</option>
-        </select>
-        <br>
-      Time of Day:<br>
-       <select name="meme-type">
-        <option value="Day">Day</option>
-        <option value="Evening">Evening</option>
-        <option value="Night">Night</option>
-        </select>
-      <input type="submit" value="Go!">
-    </form>
-  </body>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>XCLUSIVE!</title>
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to XCLUSIVE!</h1>
+  </div>
+</head>
+
+<body>
+
+  <h1>{{greeting}}</h1>
+  <img height="100px" width="150px" src="https://mark.trademarkia.com/services/logo.ashx?sid=77648270" alt="a-chewing-alpaca">
+  <h2>Welcome to my {{adjective}} Meme Generator!</h2>
+  <form method="POST">
+    Formality:<br>
+    <select name="meme-type">
+      <option value="casual">Casual</option>
+      <option value="business-casual">Business Casual</option>
+      <option value="fancy">Fancy</option>
+    </select>
+    <br>
+    Time of Day:<br>
+    <select name="meme-type">
+      <option value="Day">Day</option>
+      <option value="Evening">Evening</option>
+      <option value="Night">Night</option>
+    </select>
+    <input type="submit" value="Go!">
+  </form>
+</body>
+
 </html>
