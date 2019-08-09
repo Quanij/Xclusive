@@ -1,4 +1,21 @@
 .body {
   text-align: center;
+  background-color: gainsboro;
 
+}
+
+#jumbo {
+  text-align: center;
+  background-image: url(https://media1.giphy.com/media/ZwgHC02wifSrCgi9L5/giphy.gif);
+}
+#intro {
+  font-size: 100px;
+  color: white;
+}
+.lead {
+  color: white;
+}
+
+.spon {
+  padding-left: 20px
 }
