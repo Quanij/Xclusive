@@ -126,23 +126,9 @@ class LoginPage(webapp2.RequestHandler):
             signout_link_html = '<a href="%s">sign out</a>' % (users.create_logout_url('/'))
             email_adress = user.nickname()
             cssi_user = CssiUser.query().filter(CssiUser.email == email_adress).get()
-            if cssi_user:
-                About = the_jinja_env.get_template('Templates/AboutUs.html')
-                a_variable_dict = {"greeting": "Welcome to the Xcuslive Xperience!"}
-                self.response.write(About.render(a_variable_dict))
-            else:
-                # Registration form for a first-time visitor:
-                self.response.write('''
-                Welcome to our site, %s!  Please enter your name! <br><hr>
-                <form method="post" action="/">
-                <label for="first name"> First Name</label>
-                <input type="text" name="first_name">
-                <label for="Last name"> Last Name</label>
-                <input type="text" name="last_name">
-                <input type="submit">
-                </form><br> %s <br>
-                ''' % (email_adress, signout_link_html))
-
+            About = the_jinja_env.get_template('Templates/AboutUs.html')
+            a_variable_dict = {"greeting": "Welcome to the Xcuslive Xperience!"}
+            self.response.write(About.render(a_variable_dict))
         else:
             login_url = users.create_login_url('/')
             template_login={"login_url":login_url}
