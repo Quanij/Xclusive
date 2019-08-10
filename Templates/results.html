@@ -49,10 +49,10 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/Welcome">Outfit Generator</a>
+        <a class="nav-link" href="/AboutUs">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Templates/Recent.html">Recent Outfits</a>
+        <a class="nav-link" href="/Welcome">Outfit Generator</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Blog</a>
@@ -63,21 +63,22 @@
 </nav>
 
 
-<body class="body">
-  <div id="jumbo" class="jumbotron jumbotron-fluid">
+<body class="body" style="text-align: center;">
+  <div id="jumbo" class="jumbotron jumbotron-fluid" style="text-align: center;
+  background-image: url(https://media1.giphy.com/media/ZwgHC02wifSrCgi9L5/giphy.gif);">
     <div class="container">
-      <h1 id="intro" class="display-4">XCLUSIVE</h1>
-      <p class="lead">Look your best!</p>
+      <h1 id="intro" class="display-4" style="color: white;">XCLUSIVE</h1>
+      <p class="lead" style="color: white;">Look your best!</p>
     </div>
   </div>
 
   <h1>Your Xclusive Outfit</h1>
   <!--The image needs to be rendered for each new meme
     so set the div's background-image property inline -->
-  <div id="meme-div" style="background-image:url( {{pic_url}});">
-    <!-- <h2 id="line1"> {{line1}}</h2>
-      <h2 id="line2"> {{line2}}</h2> -->
-  </div>
+<hr>
+
+    <img style="text-align: center;"src="{{pic_url}}" alt="">
+
 
 
 </body>
