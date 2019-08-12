@@ -202,6 +202,56 @@ class WelcomePage(webapp2.RequestHandler):
 
         self.response.write(results_template.render(pic_url))
 
+class AboutMyFamilyHandler(webapp2.RequestHandler):
+    def get(self):
+        template = the_jinja_env.get_template('Templates/about_my_family.html')
+        self.response.write(template.render())
+
+class BlogHandler(webapp2.RequestHandler):
+    def get(self):
+        template = the_jinja_env.get_template('Templates/new_post.html')
+        self.response.write(template.render())
+    def post(self):
+        # Use the user input to create a new blog post
+        title_input = self.request.get('title')
+        content_input = self.request.get('content')
+        name_input = self.request.get('name')
+
+        blog_post = Post(title=title_input, content=content_input)
+        blog_post.put()
+
+        # Get the Author if one already exists with that name, or create one
+        # otherwise. Add the new blog post to their list of posts.
+        # Note: if you didn't create an Author Model, your `post` method will
+        # look very different. See below for an alternative.
+        check_authors = Author.query(Author.username == name_input).fetch()
+        if len(check_authors) > 0:
+            author = check_authors[0]
+            author.posts.append(blog_post.key)
+        else:
+            author = Author(username=name_input, posts=[blog_post.key])
+
+        author.put()
+
+        # Create a list of all the blog post objects by the given author
+        blog_posts = []
+        for blog_post_key in author.posts:
+            blog_posts.append(blog_post_key.get())
+
+        # Render the template
+        template_vars = {
+            'username': name_input,
+            'blog_posts': blog_posts
+        }
+        template = the_jinja_env.get_template(
+            'Templates/show_posts.html')
+        self.response.write(template.render(template_vars))
+
+class Index(webapp2.RequestHandler):
+    def get(self):
+        index = the_jinja_env.get_template('Templates/index.html')
+        self.response.write(index.render())
+
 
 app = webapp2.WSGIApplication([
     ('/', LoginPage),
@@ -210,5 +260,8 @@ app = webapp2.WSGIApplication([
     ('/Recent', Recent),
     ('/Results', Results),
     ('/Welcome', WelcomePage),
+    ('/family', AboutMyFamilyHandler),
+    ('/posts', BlogHandler),
+    ('/index', Index),
 
 ], debug=True)
